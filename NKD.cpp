@@ -45,10 +45,10 @@ using namespace std;
 int main()
 {
     int k, n; // k is capacity of the list, n is number of opened documentation
-    int temp_j = k - 1;
+    int temp_j = k - 1; // use temp_j variable for moving strings down in array
     string output[10][1]; // output array string (MAX documents in the list is 10,
     string input; //use this string for input
-    int count0 = 0; //count
+    int count0 = 0; //count variable
     /* initialization of array string "output" */
     for(int i = 0; i < 10; i++)
     {
