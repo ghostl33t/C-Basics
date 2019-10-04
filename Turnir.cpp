@@ -1,5 +1,5 @@
 #include <iostream>
-
+/*TEXT OF EXERCISE: https://petlja.org/biblioteka/r/problemi/Zbirka/turnir */
 using namespace std;
 
 int main()
