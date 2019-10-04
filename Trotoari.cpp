@@ -1,5 +1,5 @@
 #include <iostream>
-
+/*TEXT OF EXERCISE: https://petlja.org/biblioteka/r/problemi/takmicenja-srednje-skole/01_trotoar */
 using namespace std;
 
 int main()
