@@ -1,0 +1,169 @@
+/*TAKMICENJE IZ PROGRAMIRANJA ZADATAK 4 VOYAGER
+TEKST ZADATKA: https://upinitk.ba/wp-content/uploads/2019/4/Bilten-Informatika-2019.pdf 
+TESTNI ULAZI I IZLAZI U LINKU */
+#include <iostream>
+
+using namespace std;
+int kretanje_gore(char matrica[500][500], int &R,int &S,int &vrijeme);
+int kretanje_dole(char matrica[500][500], int &R,int &S,int &vrijeme);
+int kretanje_desno(char matrica[500][500], int &R,int &S,int &vrijeme);
+int kretanje_lijevo(char matrica[500][500], int &R,int &S,int &vrijeme);
+int main()
+{
+    char matrica[500][500];
+    char znak_ispisa[4] = {'U','R','D','L'};
+    int vremena[4] = {0,0,0,0};
+    int N, M, pVoyagerN,pVoyagerM = 0;
+    int vrijeme = 0;
+    cin>>N>>M;
+    for(int i = 1; i <= N; i++)
+    {
+        for(int j = 1; j <=M; j++)
+        {
+            matrica[i][j] = '.';
+        }
+    }
+    for(int i = 1; i <= N; i++)
+    {
+        for(int j = 1; j <= M; j++)
+        {
+            cin>>matrica[i][j];
+        }
+    }
+    cin>>pVoyagerN>>pVoyagerM;
+    int pVoyagerR = pVoyagerN;
+    int pVoyagerS = pVoyagerM;
+    kretanje_gore(matrica,pVoyagerR,pVoyagerS,vrijeme);
+    vremena[0] = vrijeme;
+    vrijeme = 0;
+    pVoyagerR = pVoyagerN;
+    pVoyagerS = pVoyagerM;
+    kretanje_desno(matrica,pVoyagerR,pVoyagerS,vrijeme);
+    vremena[1] = vrijeme;
+    vrijeme = 0;
+    pVoyagerR = pVoyagerN;
+    pVoyagerS = pVoyagerM;
+    kretanje_dole(matrica,pVoyagerR,pVoyagerS,vrijeme);
+    vremena[2] = vrijeme;
+    vrijeme = 0;
+    pVoyagerR = pVoyagerN;
+    pVoyagerS = pVoyagerM;
+    kretanje_lijevo(matrica,pVoyagerR,pVoyagerS,vrijeme);
+    vremena[3] = vrijeme;
+    vrijeme = 0;
+    pVoyagerR = pVoyagerN;
+    pVoyagerS = pVoyagerM;
+    for(int i = 0; i < 4 - 1; i++)
+    {
+        for(int j = 0; j < 4 - 1 - i; j++)
+        {
+            if(vremena[j] > vremena[j+1])
+            {
+                swap(vremena[j],vremena[j+1]);
+                swap(znak_ispisa[j], znak_ispisa[j+1]);
+            }
+        }
+    }
+    cout<<znak_ispisa[3]<<endl<<vremena[3];
+    return 0;
+}
+int kretanje_gore(char matrica[500][500], int &R,int &S,int &vrijeme)
+{
+    while(matrica[R][S] == '.')
+    {
+        R--;
+        vrijeme++;
+    }
+    if(matrica[R][S] == '/')
+    {
+        S++;
+        vrijeme++;
+         kretanje_desno(matrica,R,S,vrijeme);
+    }
+    else if(matrica[R][S] == 92)
+    {
+        S--;
+        vrijeme++;
+        kretanje_lijevo(matrica,R,S,vrijeme);
+    }
+    else if(matrica[R][S] == 'C')
+    {
+        return 1;
+    }
+    return 0;
+}
+int kretanje_desno(char matrica[500][500], int &R,int &S,int &vrijeme)
+{
+    while(matrica[R][S] == '.')
+    {
+        S++;
+        vrijeme++;
+    }
+    if(matrica[R][S] == '/')
+    {
+        vrijeme++;
+        R++;
+        kretanje_dole(matrica,R,S,vrijeme);
+    }
+    else if(matrica[R][S] == 92)
+    {
+       vrijeme++;
+       R++;
+       kretanje_dole(matrica,R,S,vrijeme);
+    }
+    else if(matrica[R][S] == 'C')
+    {
+        return 1;
+    }
+    return 0;
+}
+int kretanje_lijevo(char matrica[500][500], int &R,int &S,int &vrijeme)
+{
+    while(matrica[R][S] == '.')
+    {
+        S--;
+        vrijeme++;
+    }
+    if(matrica[R][S] == '/')
+    {
+        vrijeme++;
+        R--;
+        return kretanje_gore(matrica,R,S,vrijeme);
+    }
+    else if(matrica[R][S] == 92)
+    {
+        vrijeme++;
+        R--;
+        kretanje_gore(matrica,R,S,vrijeme);
+    }
+    else if(matrica[R][S] == 'C')
+    {
+        return 1;
+    }
+    return 0;
+}
+int kretanje_dole(char matrica[500][500], int &R,int &S,int &vrijeme)
+{
+    while(matrica[R][S] == '.')
+    {
+        R++;
+        vrijeme++;
+    }
+    if(matrica[R][S] == '/')
+    {
+        S--;
+        vrijeme++;
+        kretanje_lijevo(matrica,R,S,vrijeme);
+    }
+    else if(matrica[R][S] == 92)
+    {
+        S++;
+        vrijeme++;
+        kretanje_desno(matrica,R,S,vrijeme);
+    }
+    else if(matrica[R][S] == 'C')
+    {
+        return 1;
+    }
+    return 0;
+}
