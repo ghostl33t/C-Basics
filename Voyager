@@ -1,19 +1,20 @@
 /*TAKMICENJE IZ PROGRAMIRANJA ZADATAK 4 VOYAGER
-TEKST ZADATKA: https://upinitk.ba/wp-content/uploads/2019/4/Bilten-Informatika-2019.pdf 
+TEKST ZADATKA: https://upinitk.ba/wp-content/uploads/2019/4/Bilten-Informatika-2019.pdf
 TESTNI ULAZI I IZLAZI U LINKU */
 #include <iostream>
 
 using namespace std;
-int kretanje_gore(char matrica[500][500], int &R,int &S,int &vrijeme);
-int kretanje_dole(char matrica[500][500], int &R,int &S,int &vrijeme);
-int kretanje_desno(char matrica[500][500], int &R,int &S,int &vrijeme);
-int kretanje_lijevo(char matrica[500][500], int &R,int &S,int &vrijeme);
+int kretanje_gore(char matrica[500][500], int &R,int &S,int &vrijeme,char& znak,bool& provjera_Voyager_ispisa);
+int kretanje_dole(char matrica[500][500], int &R,int &S,int &vrijeme,char& znak,bool& provjera_Voyager_ispisa);
+int kretanje_desno(char matrica[500][500], int &R,int &S,int &vrijeme,char& znak,bool& provjera_Voyager_ispisa);
+int kretanje_lijevo(char matrica[500][500], int &R,int &S,int &vrijeme, char& znak,bool& provjera_Voyager_ispisa);
 int main()
 {
     char matrica[500][500];
     char znak_ispisa[4] = {'U','R','D','L'};
     int vremena[4] = {0,0,0,0};
     int N, M, pVoyagerN,pVoyagerM = 0;
+    bool provjera_Voyager_ispisa = false;
     int vrijeme = 0;
     cin>>N>>M;
     for(int i = 1; i <= N; i++)
@@ -33,22 +34,38 @@ int main()
     cin>>pVoyagerN>>pVoyagerM;
     int pVoyagerR = pVoyagerN;
     int pVoyagerS = pVoyagerM;
-    kretanje_gore(matrica,pVoyagerR,pVoyagerS,vrijeme);
+    kretanje_gore(matrica,pVoyagerR,pVoyagerS,vrijeme, znak_ispisa[0],provjera_Voyager_ispisa);
+    if(provjera_Voyager_ispisa == true)
+    {
+        return 0;
+    }
     vremena[0] = vrijeme;
     vrijeme = 0;
     pVoyagerR = pVoyagerN;
     pVoyagerS = pVoyagerM;
-    kretanje_desno(matrica,pVoyagerR,pVoyagerS,vrijeme);
+    kretanje_desno(matrica,pVoyagerR,pVoyagerS,vrijeme,znak_ispisa[1],provjera_Voyager_ispisa);
+    if(provjera_Voyager_ispisa == true)
+    {
+        return 0;
+    }
     vremena[1] = vrijeme;
     vrijeme = 0;
     pVoyagerR = pVoyagerN;
     pVoyagerS = pVoyagerM;
-    kretanje_dole(matrica,pVoyagerR,pVoyagerS,vrijeme);
+    kretanje_dole(matrica,pVoyagerR,pVoyagerS,vrijeme,znak_ispisa[2],provjera_Voyager_ispisa);
+    if(provjera_Voyager_ispisa == true)
+    {
+        return 0;
+    }
     vremena[2] = vrijeme;
     vrijeme = 0;
     pVoyagerR = pVoyagerN;
     pVoyagerS = pVoyagerM;
-    kretanje_lijevo(matrica,pVoyagerR,pVoyagerS,vrijeme);
+    kretanje_lijevo(matrica,pVoyagerR,pVoyagerS,vrijeme,znak_ispisa[3],provjera_Voyager_ispisa);
+    if(provjera_Voyager_ispisa == true)
+    {
+        return 0;
+    }
     vremena[3] = vrijeme;
     vrijeme = 0;
     pVoyagerR = pVoyagerN;
@@ -67,10 +84,22 @@ int main()
     cout<<znak_ispisa[3]<<endl<<vremena[3];
     return 0;
 }
-int kretanje_gore(char matrica[500][500], int &R,int &S,int &vrijeme)
+int kretanje_gore(char matrica[500][500], int &R,int &S,int &vrijeme,char& znak,bool& provjera_Voyager_ispisa)
 {
+    /* PROVJERA AKO CE OSTAT STALNO U SOLARNOM SISTEMU I ISPIS VOYAGER */
+    if(vrijeme >= 100000)
+    {
+        cout<<znak<<endl<<"Voyager";
+        provjera_Voyager_ispisa = true;
+    }
     while(matrica[R][S] == '.')
     {
+        /* PROVJERA AKO CE OSTAT STALNO U SOLARNOM SISTEMU I ISPIS VOYAGER */
+        if(vrijeme >= 100000)
+        {
+            cout<<znak<<endl<<"Voyager";
+            provjera_Voyager_ispisa = true;
+        }
         R--;
         vrijeme++;
     }
@@ -78,13 +107,13 @@ int kretanje_gore(char matrica[500][500], int &R,int &S,int &vrijeme)
     {
         S++;
         vrijeme++;
-         kretanje_desno(matrica,R,S,vrijeme);
+         kretanje_desno(matrica,R,S,vrijeme,znak,provjera_Voyager_ispisa);
     }
     else if(matrica[R][S] == 92)
     {
         S--;
         vrijeme++;
-        kretanje_lijevo(matrica,R,S,vrijeme);
+        kretanje_lijevo(matrica,R,S,vrijeme,znak,provjera_Voyager_ispisa);
     }
     else if(matrica[R][S] == 'C')
     {
@@ -92,24 +121,38 @@ int kretanje_gore(char matrica[500][500], int &R,int &S,int &vrijeme)
     }
     return 0;
 }
-int kretanje_desno(char matrica[500][500], int &R,int &S,int &vrijeme)
+int kretanje_desno(char matrica[500][500], int &R,int &S,int &vrijeme,char& znak,bool& provjera_Voyager_ispisa)
 {
+    /* PROVJERA AKO CE OSTAT STALNO U SOLARNOM SISTEMU I ISPIS VOYAGER */
+    if(vrijeme >= 100000)
+    {
+        cout<<znak<<endl<<"Voyager";
+        provjera_Voyager_ispisa = true;
+        return 0;
+    }
     while(matrica[R][S] == '.')
     {
         S++;
         vrijeme++;
+        /* PROVJERA AKO CE OSTAT STALNO U SOLARNOM SISTEMU I ISPIS VOYAGER */
+        if(vrijeme >= 100000)
+        {
+            cout<<znak<<endl<<"Voyager";
+            provjera_Voyager_ispisa = true;
+            return 0;
+        }
     }
     if(matrica[R][S] == '/')
     {
         vrijeme++;
         R++;
-        kretanje_dole(matrica,R,S,vrijeme);
+        kretanje_dole(matrica,R,S,vrijeme,znak,provjera_Voyager_ispisa);
     }
     else if(matrica[R][S] == 92)
     {
        vrijeme++;
        R++;
-       kretanje_dole(matrica,R,S,vrijeme);
+       kretanje_dole(matrica,R,S,vrijeme,znak,provjera_Voyager_ispisa);
     }
     else if(matrica[R][S] == 'C')
     {
@@ -117,24 +160,38 @@ int kretanje_desno(char matrica[500][500], int &R,int &S,int &vrijeme)
     }
     return 0;
 }
-int kretanje_lijevo(char matrica[500][500], int &R,int &S,int &vrijeme)
+int kretanje_lijevo(char matrica[500][500], int &R,int &S,int &vrijeme,char& znak,bool& provjera_Voyager_ispisa)
 {
+    /* PROVJERA AKO CE OSTAT STALNO U SOLARNOM SISTEMU I ISPIS VOYAGER */
+    if(vrijeme >= 100000)
+        {
+            cout<<znak<<endl<<"Voyager";
+            provjera_Voyager_ispisa = true;
+            return 0;
+        }
     while(matrica[R][S] == '.')
     {
         S--;
         vrijeme++;
+        /* PROVJERA AKO CE OSTAT STALNO U SOLARNOM SISTEMU I ISPIS VOYAGER */
+        if(vrijeme >= 100000)
+        {
+            cout<<znak<<endl<<"Voyager";
+            provjera_Voyager_ispisa = true;
+            return 0;
+        }
     }
     if(matrica[R][S] == '/')
     {
         vrijeme++;
         R--;
-        return kretanje_gore(matrica,R,S,vrijeme);
+        return kretanje_gore(matrica,R,S,vrijeme,znak,provjera_Voyager_ispisa);
     }
     else if(matrica[R][S] == 92)
     {
         vrijeme++;
         R--;
-        kretanje_gore(matrica,R,S,vrijeme);
+        kretanje_gore(matrica,R,S,vrijeme,znak,provjera_Voyager_ispisa);
     }
     else if(matrica[R][S] == 'C')
     {
@@ -142,24 +199,38 @@ int kretanje_lijevo(char matrica[500][500], int &R,int &S,int &vrijeme)
     }
     return 0;
 }
-int kretanje_dole(char matrica[500][500], int &R,int &S,int &vrijeme)
+int kretanje_dole(char matrica[500][500], int &R,int &S,int &vrijeme,char& znak,bool& provjera_Voyager_ispisa)
 {
+    /* PROVJERA AKO CE OSTAT STALNO U SOLARNOM SISTEMU I ISPIS VOYAGER */
+    if(vrijeme >= 100000)
+    {
+            cout<<znak<<endl<<"Voyager";
+            provjera_Voyager_ispisa = true;
+            return 0;
+    }
     while(matrica[R][S] == '.')
     {
         R++;
         vrijeme++;
+        /* PROVJERA AKO CE OSTAT STALNO U SOLARNOM SISTEMU I ISPIS VOYAGER */
+        if(vrijeme >= 100000)
+        {
+            cout<<znak<<endl<<"Voyager";
+            provjera_Voyager_ispisa = true;
+            return 0;
+        }
     }
     if(matrica[R][S] == '/')
     {
         S--;
         vrijeme++;
-        kretanje_lijevo(matrica,R,S,vrijeme);
+        kretanje_lijevo(matrica,R,S,vrijeme,znak,provjera_Voyager_ispisa);
     }
     else if(matrica[R][S] == 92)
     {
         S++;
         vrijeme++;
-        kretanje_desno(matrica,R,S,vrijeme);
+        kretanje_desno(matrica,R,S,vrijeme,znak,provjera_Voyager_ispisa);
     }
     else if(matrica[R][S] == 'C')
     {
