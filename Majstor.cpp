@@ -1,7 +1,7 @@
 #include <iostream>
-
+// TEKST ZADATKA http://hsin.hr/zup09/pasccpp2_zadaci.pdf I. ZADATAK MAJSTOR
 using namespace std;
-
+//ulaz koraka
 void ulaz_znakova(int brojRundi, char znakovi[])
 {
 	for (int i = 0; i < brojRundi; i++)
