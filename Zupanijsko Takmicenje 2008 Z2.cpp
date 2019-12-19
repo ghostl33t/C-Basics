@@ -4,6 +4,8 @@
 using namespace std;
 int main()
 {
+    /*float su N, M i brojac posto mi baguje kad koristim int tipove podatka za ove varijable prilikom dijeljenja
+      vjerovatno je problem do kompajlera il sta vec */
     float N;//broj_rijeci_u_naslovu;
     float M;//broj_rijeci_iz_pjesme;
     float brojac = 0; //broji jednostavno broj pogodjenih rijeci
