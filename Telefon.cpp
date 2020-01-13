@@ -1,25 +1,22 @@
 #include <iostream>
-#include <string>
+/*TEKST(Z BR1): https://hsin.hr/skolska2007/zadaci/pas_c_cpp/prva/zadaci.pdf */
 using namespace std;
-int main(){
-string znakovi;
+
+int main()
+{
+    string x;
     string brojevi;
-    cin>>znakovi;
+    int temp_b = 0;
+    cin>>x;
     cin>>brojevi;
-    for(int i = 0; i < 20;i++)
+    for(int i = 0; i < x.length(); i++)
     {
-        if(znakovi[i] == '-')
+        if(x[i] == 'x')
         {
-            brojevi.insert(i," ");
+            x[i] = brojevi[temp_b];
+            temp_b++;
         }
     }
-    for(int i = 0; i < 20; i++)
-    {
-        if(isspace(brojevi[i]))
-        {
-            brojevi[i] = '-';
-        }
-    }
-    cout<<brojevi;
+    cout<<x;
     return 0;
 }
