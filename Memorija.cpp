@@ -1,4 +1,5 @@
 #include <iostream>
+/* TEKST (Z BR2) :  https://hsin.hr/skolska2007/zadaci/pas_c_cpp/prva/zadaci.pdf*/
 using namespace std;
 void brisanje_memorije(int matrica[][100])
 {
