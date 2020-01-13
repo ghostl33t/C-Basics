@@ -1,72 +1,52 @@
 #include <iostream>
-
 using namespace std;
-
+void brisanje_memorije(int matrica[][100])
+{
+    for(int i = 0; i < 100; i++)
+    {
+        for(int j = 0; j < 100; j++)
+        {
+            matrica[i][j] = -2;
+        }
+    }
+}
 int main()
 {
-   int n;
-   int matrica[100][100];
-   for(int i = 0; i < 100; i++)
-   {
-       for(int j = 0; j < 100; j++)
-       {
-           matrica[i][j] = -2;
-       }
-   }
-   cin>>n;
-   int brojac_nula = 0;
-   int brojac_jedinica = 0;
-   int brojac_greski = 0;
-   int r,s,nula_ili_jedan;
-   char naredba;
-   for(int x = 0; x < n; x++)
-   {
-       cin>>naredba;
-       if(naredba == 'S')
-       {
-           cin>>r>>s>>nula_ili_jedan;
-           for(int x = 0; x < 100; x++)
+    int matrica[100][100];
+    int broj_jedinica = 0;
+    int broj_nula = 0;
+    int broj_greski = 0;
+    int N,R, S, vrijednost;
+    char Naredba;
+    brisanje_memorije(matrica);
+    cin>>N;
+    for(int i = 0; i < N; i++)
+    {
+        cin>>Naredba;
+        if(Naredba == 'S')
+        {
+            cin>>R>>S>>vrijednost;
+            matrica[R][S] = vrijednost;
+        }
+        else if(Naredba=='L')
+        {
+            cin>>R>>S;
+            if(matrica[R][S] == -2)
             {
-               for(int y = 0; y < 100; y++)
-               {
-                   matrica[r][s] = nula_ili_jedan;
-               }
+                broj_greski++;
             }
-       }
-       else if(naredba == 'L')
-       {
-           cin>>r>>s;
-           for(int x = 0; x < 100; x++)
-           {
-               for(int y = 0; y < 100; y++)
-               {
-                   if(matrica[r][s] == 1)
-                   {
-                       brojac_jedinica = brojac_jedinica + 1;
-
-                   }
-                   else if(matrica[r][s] == 0)
-                   {
-                       brojac_nula = brojac_nula + 1;
-
-                   }
-                   else
-                    brojac_greski = brojac_greski + 1;
-               }
-           }
-       }
-       else if(naredba == 'C')
-       {
-           for(int x = 0; x < 100; x++)
-           {
-               for(int y = 0; y < 100; y++)
-               {
-                   matrica[x][y] = -2;
-               }
-           }
-       }
-   }
-   cout<<brojac_nula / 10000<<" " << brojac_jedinica / 10000<< " " << brojac_greski / 10000;
-
-   return 0;
+            else if(matrica[R][S] == 1)
+            {
+                broj_jedinica++;
+            }
+            else{
+                broj_nula++;
+            }
+        }
+        else{
+            brisanje_memorije(matrica);
+        }
+    }
+    cout<<broj_nula<<" "<<broj_jedinica<<" "<<broj_greski;
+    return 0;
 }
