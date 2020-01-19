@@ -15,12 +15,12 @@ int main()
 {
     int N,tempN,brojac = 1,tempj=0,tempi=1,matrica[4000][4000];
     char naredba;
-    for(int i = 0; i < 10; i++)
+    cin>>N;
+    for(int i = 0; i < N; i++)
     {
-        for(int j = 0; j < 10; j++)
+        for(int j = 0; j < N; j++)
             matrica[i][j] = 0;
     }
-    cin>>N;
     tempN=N; //da mi ne bi uticalo na vrijednost N pri unosu, dodjelit vrijednost N tempN, kroz kod je sve jasno zasto
     for(int i = 0; i < N; i++)
     {
