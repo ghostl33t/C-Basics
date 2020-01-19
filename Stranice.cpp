@@ -2,7 +2,7 @@
 
 using namespace std;
 /*TEKST: https://i.imgur.com/04fHVjv.png */
-void ispis(int matrica[][10],int tempN, int tempj, int& brojac)
+void ispis(int matrica[][4000],int tempN, int tempj, int& brojac)
 {
     for(int x = 0; x < tempN; x++)
     {
@@ -13,7 +13,7 @@ void ispis(int matrica[][10],int tempN, int tempj, int& brojac)
 }
 int main()
 {
-    int N,tempN,brojac = 1,tempj=0,tempi=1,matrica[10][10];
+    int N,tempN,brojac = 1,tempj=0,tempi=1,matrica[4000][4000];
     char naredba;
     for(int i = 0; i < 10; i++)
     {
