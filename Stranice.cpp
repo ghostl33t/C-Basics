@@ -2,12 +2,18 @@
 
 using namespace std;
 /*TEKST: https://i.imgur.com/04fHVjv.png */
+void ispis(int matrica[][10],int tempN, int tempj, int& brojac)
+{
+    for(int x = 0; x < tempN; x++)
+    {
+        for(int j = tempj; j < tempN; j++)
+            brojac+=matrica[x][j];
+    }
+    cout<<brojac<<endl;
+}
 int main()
 {
-    int N,tempN; //tempN sluzi kako bi sjeko redove/stupce
-    int brojac = 1; //koristit pri izlazu i koristit pri dodjeljivanju vrijednosti u matrici
-    int tempj=0; //kad se osjece stupac, tempj se poveca
-    int matrica[10][10];
+    int N,tempN,brojac = 1,tempj=0,tempi=1,matrica[10][10];
     char naredba;
     for(int i = 0; i < 10; i++)
     {
@@ -29,49 +35,22 @@ int main()
         cin>>naredba;
         brojac=0;
         if(naredba=='A')
-        {
-            tempj++; //sijeci stupac
-            for(int x = 0; x < tempN; x++)
-            {
-                for(int j = tempj; j < tempN; j++)
-                {
-                    brojac+=matrica[x][j];
-                }
-            }
-            cout<<brojac<<endl;
-        }
+            tempj++; //capni stupac
         else if(naredba == 'C')
-        {
-            tempN--; //sijeci red
-            for(int x = 0; x < tempN; x++)
-            {
-                for(int j = tempj; j < tempN; j++)
-                {
-                    brojac+=matrica[x][j];
-                }
-            }
-            cout<<brojac<<endl;
-        }
+            tempN--; //capni red
         else if(naredba == 'B')
         {
-            //posto je dijagonala, mora se kroz nju postavit svih vrijednosti u dijagonali na 0, ne moze se nista sjec ko gore
             for(int x = tempN - 1; x >= 0; x--)
             {
-                for(int j = tempN-1; j >= tempj;j--)
+                for(int j = tempN-tempi; j >= tempj;j--)
                 {
                     matrica[x][j] = 0;
                     x--;
                 }
             }
-            for(int x = 0; x < tempN; x++)
-            {
-                for(int j = tempj; j < tempN; j++)
-                {
-                    brojac+=matrica[x][j];
-                }
-            }
-            cout<<brojac<<endl;
+            tempi++;
         }
+        ispis(matrica,tempN,tempj,brojac);
     }
     return 0;
 }
