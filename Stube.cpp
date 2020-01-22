@@ -8,10 +8,6 @@ int main()
     int niz[20];
     int kockice = 0;
     cin>>N;
-    for(int i = 0; i < N+1; i++)
-    {
-        niz[i]=0;
-    }
     for(int i = 0; i < N; i++)
     {
         cin>>niz[i];
