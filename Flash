@@ -1,0 +1,31 @@
+#include <iostream>
+/*tekst: zadatak flash: https://i.imgur.com/A7pItXI.png
+(2. testni ulaz nije tacno rjesenje, mora biti 103 a ne 105*/
+using namespace std;
+
+int main()
+{
+    int var;
+    string niz;
+    char provjera;
+    cin>>var>>var;
+    var=0;
+    cin>>niz;
+    for(int i = 0; i < niz.length(); i++)
+    {
+        cin>>provjera;
+        if(provjera != niz[i])
+        {
+            if(provjera == '0')
+            {
+                var++;
+            }
+            else if(provjera == '1')
+            {
+                var+=100;
+            }
+        }
+    }
+    cout<<var;
+    return 0;
+}
