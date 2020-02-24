@@ -19,7 +19,7 @@ void provjera(string& izlaz, string slogovi[4])
 int main()
 {
     int N, mjestoSloga = 0, velicina_stringa;
-    string ulaz, izlaz = "";;
+    string ulaz, izlaz = "";
     string slogovi[4];
     cin>>N;
     for(int i = 0; i < N; i++){
