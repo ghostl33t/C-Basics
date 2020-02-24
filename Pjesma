@@ -20,7 +20,7 @@ int main()
 {
     int N, mjestoSloga = 0, velicina_stringa;
     string ulaz, izlaz = "";;
-    string matrica_slogova[4];
+    string slogovi[4];
     cin>>N;
     for(int i = 0; i < N; i++){
         if(i > 0)
@@ -40,9 +40,9 @@ int main()
                     else if(ulaz[x] == ' ')
                         mjestoSloga = x+1;
                 }
-                matrica_slogova[j] = ulaz.substr(mjestoSloga);
+                slogovi[j] = ulaz.substr(mjestoSloga);
             }
-        provjera(izlaz,matrica_slogova);
+        provjera(izlaz,slogovi);
     }
     cout<<izlaz;
     return 0;
