@@ -6,7 +6,6 @@ using namespace std;
 Zadatak Br: 1 (PJESME)*/
 void provjera(string& izlaz, string slogovi[4])
 {
-
     if (slogovi[0] == slogovi[1] && slogovi[0] == slogovi[2] && slogovi[0] == slogovi[3])
         izlaz += "savrsena";
     else if (slogovi[0] == slogovi[1] && slogovi[2] == slogovi[3])
