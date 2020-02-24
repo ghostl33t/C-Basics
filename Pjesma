@@ -1,0 +1,68 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+using namespace std;
+void provjera(string& izlaz, string slogovi[4])
+{
+
+    if (slogovi[0] == slogovi[1] && slogovi[0] == slogovi[2] && slogovi[0] == slogovi[3])
+    {
+        izlaz += "savrsena";
+    }
+    else if (slogovi[0] == slogovi[1] && slogovi[2] == slogovi[3])
+    {
+        izlaz += "parna";
+    }
+    else if (slogovi[0] == slogovi[2] && slogovi[1] == slogovi[3])
+    {
+        izlaz += "ukrstena";
+    }
+    else if (slogovi[0] == slogovi[3] && slogovi[1] == slogovi[2])
+    {
+        izlaz += "obgrljena";
+    }
+    else {
+        izlaz += "slobodan stih";
+    }
+}
+int main()
+{
+    int N;
+    int mjestoSloga = 0;
+    int velicina_stringa;
+    string ulaz;
+    string matrica_slogova[4];
+    string izlaz = "";
+    cin>>N;
+    for(int i = 0; i < N; i++){
+        if(i > 0)
+            izlaz+="\n";
+        for(int j = 0; j < 4; j++)
+            {
+                cin>>ws;
+                converter = "";
+                ulaz = "";
+                getline(cin,ulaz);
+                velicina_stringa = ulaz.size();
+                for(int x = 0; x < velicina_stringa; x++)
+                {
+                    tolower(ulaz[x]);
+                }
+                for(int x = 0; x < velicina_stringa; x++)
+                {
+                    if(ulaz[x] == 'a' || ulaz[x] == 'e' || ulaz[x] == 'i' || ulaz[x] == 'o' || ulaz[x] == 'u')
+                    {
+                        mjestoSloga = x;
+                    }
+                    else if(ulaz[x] == ' ')
+                    {
+                        mjestoSloga = x+1;
+                    }
+                }
+                matrica_slogova[j] = ulaz.substr(mjestoSloga);
+            }
+        provjera(izlaz,matrica_slogova);
+    }
+    cout<<izlaz;
+    return 0;
+}
