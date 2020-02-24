@@ -47,17 +47,12 @@ int main()
                 for(int x = 0; x < velicina_stringa; x++)
                 {
                     tolower(ulaz[x]);
-                }
-                for(int x = 0; x < velicina_stringa; x++)
-                {
                     if(ulaz[x] == 'a' || ulaz[x] == 'e' || ulaz[x] == 'i' || ulaz[x] == 'o' || ulaz[x] == 'u')
                     {
                         mjestoSloga = x;
                     }
                     else if(ulaz[x] == ' ')
-                    {
                         mjestoSloga = x+1;
-                    }
                 }
                 matrica_slogova[j] = ulaz.substr(mjestoSloga);
             }
