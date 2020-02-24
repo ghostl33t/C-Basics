@@ -40,7 +40,6 @@ int main()
         for(int j = 0; j < 4; j++)
             {
                 cin>>ws;
-                converter = "";
                 ulaz = "";
                 getline(cin,ulaz);
                 velicina_stringa = ulaz.size();
